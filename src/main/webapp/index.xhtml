@@ -15,7 +15,6 @@
 </h:head>
 <h:body>
 
-
     <section class="main-container__item_left-column__item content-section content-section_graph">
         <h2 class="content-section__header content-section__header_graph topper">
                     <span class="content-section__header__text">
@@ -78,7 +77,12 @@
             </h:panelGroup>
         </h:panelGrid>
         <h:commandButton value="SUBMIT" action="#{entries.addBean}"  id="submit"/>
+
     <h:inputHidden id="hidden-radius"></h:inputHidden>
+    </h:form>
+
+    <h:form>
+        <h:commandButton value="DELETE" id="delete-button" action="#{entries.deleteEntries}"/>
     </h:form>
 
     <h:dataTable value="#{entries.beans}" var="bean" id="result-table">

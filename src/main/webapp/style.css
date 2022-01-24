@@ -59,5 +59,8 @@ input[type="text"]{
     width: 4cm;
     border: inset;
 }
+h1{
+    margin-bottom: 1rem;
+}
 
 

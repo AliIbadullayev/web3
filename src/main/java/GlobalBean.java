@@ -1,3 +1,4 @@
+import javax.annotation.PostConstruct;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -41,9 +42,18 @@ public class GlobalBean implements Serializable {
         }
 
     }
+    public void deleteEntries(){
+        beans.clear();
+        transaction.begin();
+        Query query = entityManager.createQuery("DELETE FROM ManagedBean");
+        query.executeUpdate();
+        transaction.commit();
+    }
 
     public String addBean() {
         try {
+            connection();
+            loadEntries();
             transaction.begin();
             bean.getXValue();
             bean.checkHit();

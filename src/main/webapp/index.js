@@ -64,14 +64,14 @@ function getRadius(){
 }
 
 function validateForm(){
-	y = yText.value;
+	y = yText.value.replace(",", ".");
+	yText.value = y;
 
-	if ( x === null || x===""){
-
-		errorMsg.innerHTML="Некорректное значение 'X'!";
+	if ( x === null || x==="" || x > 1 || x<-5){
+		errorMsg.innerHTML="Некорректное значение 'X'! X принадлежит (-5;1)";
 		return false;
-	} else if (isNaN(y) || y === "" ||  y >= 5 || y <= -5){
-		errorMsg.innerHTML="Некорректное значение 'Y'!";
+	} else if (isNaN(y) || y === "" ||  y >= 3 || y <= -3){
+		errorMsg.innerHTML="Некорректное значение 'Y'! Y принадлежит (-3;3)";
 		return false;
 	} else if ( radius === null || radius===""){
 
@@ -169,22 +169,19 @@ function validateForm(){
 	}, false);
 
 	function validateSvgX(xcheck){
-		if (xcheck > 1 || xcheck < -5){
-			x = null;
-		}  else {
+
 			x = xcheck;
-		}
+
 	}
 	function validateSvgY(ycheck){
-		if (ycheck > 3 || ycheck < -3){
-			y = null;
-		}  else {
+
 			y = ycheck;
-		}
+
 	}
 	function validateSvg(x, y){
-		return !(x == null || y == null);
+		return !(x == null || y == null || x > 1 || x < -5 || x > 3 || x < -3 );
 	}
+
 
 	// when window load we draw on svg a point with old params
 	window.onload = function (){
@@ -194,4 +191,5 @@ function validateForm(){
 		}
 		yText.setAttribute("value","");
 		loadTablePoints();
+
 	}
